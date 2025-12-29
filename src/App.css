@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
+  color: var(--noir);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Utility classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--rouge-chambre);
+  color: var(--creme);
+}
+
+::-moz-selection {
+  background: var(--rouge-chambre);
+  color: var(--creme);
+}
+
+/* Scrollbar styling - Film strip */
+::-webkit-scrollbar {
+  width: 16px;
+  background: var(--noir);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--noir);
+  border-left: 2px solid var(--creme-dark);
+  border-right: 2px solid var(--creme-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rouge-chambre);
+  border: 2px solid var(--noir);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d32f47;
+}
+
+/* Focus styles - Brutalist */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--rouge-chambre);
+  outline-offset: 4px;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .header,
+  .footer,
+  button {
+    display: none;
+  }
+}

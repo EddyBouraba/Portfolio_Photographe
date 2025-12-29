@@ -1,0 +1,215 @@
+.gallery {
+  padding: var(--gap-brutal) 0;
+  background: var(--noir);
+  position: relative;
+}
+
+/* Accent rouge vertical */
+.gallery::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 4px;
+  height: 200px;
+  background: var(--rouge-chambre);
+}
+
+.gallery-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--gap-loose);
+}
+
+.gallery-header {
+  margin-bottom: var(--gap-brutal);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-loose);
+  align-items: end;
+}
+
+.gallery-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900;
+  color: var(--creme);
+  margin: 0;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.gallery-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--argent);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  align-self: end;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--rouge-chambre);
+}
+
+.gallery-filters {
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--gap-brutal);
+  border: 3px solid var(--creme);
+  width: fit-content;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  border-right: 3px solid var(--creme);
+  padding: 1rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--creme);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.filter-btn:last-child {
+  border-right: none;
+}
+
+.filter-btn:hover {
+  background: var(--creme);
+  color: var(--noir);
+}
+
+.filter-btn.active {
+  background: var(--rouge-chambre);
+  color: var(--creme);
+  border-right-color: var(--rouge-chambre);
+}
+
+.filter-btn.active:last-child {
+  border-right: none;
+}
+
+/* Layout brisé magazine photo */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap-base);
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Asymétrie brutale - chaque item a une taille unique */
+.gallery-grid > :nth-child(6n + 1) {
+  grid-column: span 7;
+  grid-row: span 2;
+}
+
+.gallery-grid > :nth-child(6n + 2) {
+  grid-column: span 5;
+  grid-row: span 1;
+}
+
+.gallery-grid > :nth-child(6n + 3) {
+  grid-column: span 5;
+  grid-row: span 1;
+}
+
+.gallery-grid > :nth-child(6n + 4) {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.gallery-grid > :nth-child(6n + 5) {
+  grid-column: span 8;
+  grid-row: span 1;
+}
+
+.gallery-grid > :nth-child(6n + 6) {
+  grid-column: span 6;
+  grid-row: span 2;
+}
+
+.gallery-grid > :nth-child(6n) {
+  grid-column: span 6;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallery-header {
+    grid-template-columns: 1fr;
+    gap: var(--gap-base);
+  }
+
+  .gallery-title {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Simplification du layout sur tablette */
+  .gallery-grid > :nth-child(3n + 1) {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+
+  .gallery-grid > :nth-child(3n + 2) {
+    grid-column: span 6;
+    grid-row: span 1;
+  }
+
+  .gallery-grid > :nth-child(3n + 3) {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: var(--gap-loose) 0;
+  }
+
+  .gallery-container {
+    padding: 0 var(--gap-base);
+  }
+
+  .gallery-header {
+    margin-bottom: var(--gap-loose);
+  }
+
+  .gallery-filters {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .filter-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.7rem;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-base);
+  }
+
+  /* Mobile : layout simple mais varié */
+  .gallery-grid > * {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}

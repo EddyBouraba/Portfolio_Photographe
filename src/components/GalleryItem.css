@@ -1,0 +1,128 @@
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: var(--noir-soft);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  aspect-ratio: 3 / 2;
+  border: 4px solid var(--creme-dark);
+  box-shadow: var(--shadow-film);
+}
+
+.gallery-item:hover {
+  border-color: var(--rouge-chambre);
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: 12px 12px 0 var(--rouge-chambre), var(--shadow-film);
+  z-index: 10;
+}
+
+.gallery-item-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  filter: grayscale(0.3) contrast(1.1);
+}
+
+.gallery-image.loaded {
+  opacity: 1;
+}
+
+.gallery-item:hover .gallery-image {
+  filter: grayscale(0) contrast(1.2);
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.4) 50%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-item-title {
+  color: var(--creme);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transform: translateY(10px);
+  transition: transform 0.2s ease;
+  border-left: 3px solid var(--rouge-chambre);
+  padding-left: 0.75rem;
+}
+
+.gallery-item:hover .gallery-item-title {
+  transform: translateY(0);
+}
+
+.gallery-item-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  background: var(--rouge-chambre);
+  border: 2px solid var(--creme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--creme);
+  font-weight: 700;
+  transform: scale(0) rotate(-45deg);
+  transition: transform 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.gallery-item:hover .gallery-item-icon {
+  transform: scale(1) rotate(0deg);
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    aspect-ratio: 1 / 1;
+  }
+
+  .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .gallery-item-title {
+    transform: translateY(0);
+    font-size: 1.125rem;
+  }
+
+  .gallery-item-icon {
+    display: none;
+  }
+}
